@@ -1,0 +1,4 @@
+export default function ProductTable({ products, onEdit, onDelete }) {
+  if (!products.length) return <div className="empty">No Records Found</div>;
+  return <div className="table-wrap"><table><thead><tr><th>ID</th><th>Product</th><th>Code</th><th>Category</th><th>Price</th><th>Qty</th><th>Date Added</th><th>Status</th><th>Actions</th></tr></thead><tbody>{products.map(p=><tr key={p.product_id}><td>#{p.product_id}</td><td><strong>{p.product_name}</strong></td><td>{p.product_code}</td><td>{p.category}</td><td>₹{Number(p.price).toFixed(2)}</td><td>{p.quantity}</td><td>{p.date_added}</td><td><span className={`status ${p.status.toLowerCase()}`}>{p.status}</span></td><td><div className="actions"><button onClick={()=>onEdit(p)}>Edit</button><button className="danger" onClick={()=>onDelete(p)}>Delete</button></div></td></tr>)}</tbody></table></div>;
+}
